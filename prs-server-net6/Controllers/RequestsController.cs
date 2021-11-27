@@ -54,25 +54,31 @@ namespace prs_server_net6.Controllers {
             return NoContent();
         }
 
-        [HttpPut("review")]
-        public async Task<IActionResult> SetReview(Request request) {
-            var status = (request.Total <= 50) ? "APPROVED" : "REVIEW";
-            var newRequest = request with { Status = status };
-            return await Change(newRequest.Id, newRequest);
+        [HttpPut("review/{id}")]
+        public async Task<IActionResult> SetReview(int id, Request request) {
+            var req = await _context.Requests.FindAsync(request.Id);
+            if (req == null) { return NotFound(); }
+            req.Status = (req.Total <= 50) ? "APPROVED" : "REVIEW";
+            req.RejectionReason = null;
+            return await Change(req.Id, req);
         }
 
-        [HttpPut("approve")]
-        public async Task<IActionResult> SetApproved(Request request) {
-            var status = "APPROVED";
-            var newRequest = request with { Status = status };
-            return await Change(newRequest.Id, newRequest);
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> SetApproved(int id, Request request) {
+            var req = await _context.Requests.FindAsync(request.Id);
+            if (req == null) { return NotFound(); }
+            req.Status = "APPROVED";
+            req.RejectionReason = null;
+            return await Change(req.Id, req);
         }
 
-        [HttpPut("reject")]
-        public async Task<IActionResult> SetRejected(Request request) {
-            var status = "REJECTED";
-            var newRequest = request with { Status = status };
-            return await Change(newRequest.Id, newRequest);
+        [HttpPut("reject/{id}")]
+        public async Task<IActionResult> SetRejected(int id, Request request) {
+            var req = await _context.Requests.FindAsync(request.Id);
+            if (req == null) { return NotFound(); }
+            req.Status = "REJECTED";
+            req.RejectionReason = request.RejectionReason;
+            return await Change(req.Id, req);
         }
 
         [HttpDelete("{id}")]

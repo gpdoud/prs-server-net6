@@ -5,10 +5,16 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prs-server-net6", "prs-server-net6\prs-server-net6.csproj", "{6D82FF32-8E07-4D7D-8E2C-A1D6D990B692}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7075CC6B-A14A-4B51-B818-C3CFCC4AEBCB}"
+	ProjectSection(SolutionItems) = preProject
+		Prs.sql = Prs.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6D82FF32-8E07-4D7D-8E2C-A1D6D990B692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

@@ -12,13 +12,13 @@ namespace prs_server_net6.Models {
         [StringLength(80), Required]
         public string Justification { get; init; } = string.Empty;
         [StringLength(80)]
-        public string? RejectionReason { get; init; } = null;
+        public string? RejectionReason { get; set; } = null;
         [StringLength(30), Required]
         public string DeliveryMode { get; init; } = string.Empty;
         [StringLength(30), Required]
-        public string Status { get; init; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
         [Column(TypeName = "decimal(11,2)")]
-        public decimal Total { get; init; } = 0;
+        public decimal Total { get; set; } = 0;
 
         public int UserId { get; init; } = 0;
         public virtual User? User { get; init; } = default;

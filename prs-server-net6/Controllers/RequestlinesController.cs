@@ -17,16 +17,16 @@ namespace prs_server_net6.Controllers {
         private async Task RecalculateRequestTotal(int requestId) {
             var request = await _context.Requests.FindAsync(requestId);
             if(request == null) { throw new Exception("Invalid requestId in RecalculateRequestTotal"); }
-            var total = (from rl in _context.Requestlines
+            request.Total = (from rl in _context.Requestlines
                              join p in _context.Products
                              on rl.ProductId equals p.Id
                              where rl.RequestId == requestId
                              select new {
                                  LineTotal = rl.Quantity * p.Price
                              }).Sum(x => x.LineTotal);
-            var newRequest = request with { Total = total };
-            _context.Entry(newRequest).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            request.Status = "EDIT";
+            var reqCtrl = new RequestsController(_context);
+            await reqCtrl.Change(request.Id, request);
         }
 
         [HttpGet]

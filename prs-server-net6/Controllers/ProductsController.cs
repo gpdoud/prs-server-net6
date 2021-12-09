@@ -16,12 +16,16 @@ namespace prs_server_net6.Controllers {
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetAll() {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                                    .Include(x => x.Vendor)
+                                    .ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> Get(int id) {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                                            .Include(x => x.Vendor)
+                                            .SingleOrDefaultAsync(x => x.Id == id);
             return (product != null) ? product : NotFound();
         }
 

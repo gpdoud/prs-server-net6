@@ -13,7 +13,8 @@ namespace prs_server_net6.Models {
         public DbSet<Request> Requests { get; set; }
         public DbSet<Requestline> Requestlines { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
+        }
 
         protected override void OnModelCreating(ModelBuilder builder) {
 

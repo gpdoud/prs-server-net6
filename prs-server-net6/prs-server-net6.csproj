@@ -24,7 +24,6 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

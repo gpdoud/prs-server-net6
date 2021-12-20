@@ -1,4 +1,4 @@
-﻿use AppDb;
+﻿use Prs6Db;
 go
 INSERT Users (Username, Password, Firstname, Lastname, Phone, Email, IsReviewer, IsAdmin) Values
 			('sa', 'sa', 'System', 'Admin', '911', 'help@system.com', 1, 1),

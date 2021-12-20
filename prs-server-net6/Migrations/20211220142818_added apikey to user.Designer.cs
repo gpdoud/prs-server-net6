@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prs_server_net6.Models;
 
@@ -10,9 +11,10 @@ using prs_server_net6.Models;
 namespace prs_server_net6.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211220142818_added apikey to user")]
+    partial class addedapikeytouser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace prs_server_net6.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("prs_server_net6.Models.Request", b =>
@@ -105,7 +107,7 @@ namespace prs_server_net6.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Requests", (string)null);
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("prs_server_net6.Models.Requestline", b =>
@@ -131,7 +133,7 @@ namespace prs_server_net6.Migrations
 
                     b.HasIndex("RequestId");
 
-                    b.ToTable("Requestlines", (string)null);
+                    b.ToTable("Requestlines");
                 });
 
             modelBuilder.Entity("prs_server_net6.Models.User", b =>
@@ -185,7 +187,7 @@ namespace prs_server_net6.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("prs_server_net6.Models.Vendor", b =>
@@ -239,7 +241,7 @@ namespace prs_server_net6.Migrations
                     b.HasIndex("Code")
                         .IsUnique();
 
-                    b.ToTable("Vendors", (string)null);
+                    b.ToTable("Vendors");
                 });
 
             modelBuilder.Entity("prs_server_net6.Models.Product", b =>

@@ -40,9 +40,10 @@ namespace prs_server_net6.Controllers {
         }
         [HttpPost]
         public async Task<ActionResult<User>> Create(User user) {
-            if(user == null) {
+            if (user == null) {
                 return BadRequest();
             }
+            user.Apikey = getApikey();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return Created("Created", user);
@@ -51,6 +52,9 @@ namespace prs_server_net6.Controllers {
         public async Task<IActionResult> Change(int id, User user) {
             if (user.Id != id) {
                 return BadRequest();
+            }
+            if(user.Apikey == null) {
+                user.Apikey = getApikey();
             }
             _context.Entry(user).State = EntityState.Modified;
 
@@ -66,6 +70,9 @@ namespace prs_server_net6.Controllers {
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+        private string getApikey() {
+            return $"{Guid.NewGuid().ToString()}{Guid.NewGuid().ToString()}".Replace("-", string.Empty);
         }
     }
 }

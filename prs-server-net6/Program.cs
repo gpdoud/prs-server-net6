@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using prs_server_net6.Middleware;
 using prs_server_net6.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,8 @@ var app = builder.Build();
 app.UseCors(AppAccess);
 
 app.UseAuthorization();
+
+app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
